@@ -13,7 +13,6 @@ import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
@@ -165,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
                                     DatagramSocket dsocket = new DatagramSocket();
                                     dsocket.send(packet);
                                     dsocket.close();
-                                    Toast.makeText(getApplicationContext(),IP,Toast.LENGTH_LONG).show();
+                                    //Toast.makeText(getApplicationContext(),IP,Toast.LENGTH_LONG).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
