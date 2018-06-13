@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Dental Toolkit APP</string>
+    <string name="app_name">Dental Toolkit Scanner</string>
     <string name="result_text_default">Escaner QR</string>
 </resources>

@@ -27,6 +27,8 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final Pattern PATTERN = Pattern.compile(
+            "^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$");
     final int RequestCameraPermissionID = 1001;
     SurfaceView cameraPreview;
     TextView txtResult;
@@ -35,9 +37,6 @@ public class MainActivity extends AppCompatActivity {
     String IP = "";
     String IDPACIENTE = "";
     String sentence = "";
-    private static final Pattern PATTERN = Pattern.compile(
-            "^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$");
-
     int a = 1;
 
     public static boolean validate(final String ip) {
@@ -124,29 +123,29 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
 
                             //Create vibrate
-                            if(a==1){
+                            if (a == 1) {
                                 txtResult.setText("Enfoque el QR");
                                 //txtResult.setText(qrcodes.valueAt(0).displayValue);
-                                IP=qrcodes.valueAt(0).displayValue;
+                                IP = qrcodes.valueAt(0).displayValue;
                                 //Toast.makeText(getApplicationContext(),IP,Toast.LENGTH_LONG).show();
-                                if(!IP.equals("") && validate(IP)){
+                                if (!IP.equals("") && validate(IP)) {
                                     Vibrator vibrator = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                                     vibrator.vibrate(1000);
                                     txtResult.setText("Escanear QR de paciente");
-                                    a=0;
+                                    a = 0;
                                 }
                             }
-                            if(a==0){
+                            if (a == 0) {
                                 //Toast.makeText(getApplicationContext(),"Escanear QR de paciente",Toast.LENGTH_LONG).show();
-                                IDPACIENTE=qrcodes.valueAt(0).displayValue;
+                                IDPACIENTE = qrcodes.valueAt(0).displayValue;
                                 //Toast.makeText(getApplicationContext(),IP,Toast.LENGTH_LONG).show();
-                                if(!IDPACIENTE.equals("") && !(validate(IDPACIENTE))){
+                                if (!IDPACIENTE.equals("") && !(validate(IDPACIENTE))) {
                                     Vibrator vibrator = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                                     vibrator.vibrate(1000);
-                                    a=3;
+                                    a = 3;
                                 }
                             }
-                            if(a==3){
+                            if (a == 3) {
                                 try {
                                     String host = IP;
                                     int port = 9876;
@@ -168,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
-                                a=1;
+                                a = 1;
                             }
                         }
                     });
